@@ -5,11 +5,11 @@ def calcular_total_pedido(subtotal, distancia_km, cliente_vip=False):
     de acordo com os requisitos descritos no README.
     """
 
-    if subtotal < 0 and distancia_km < 0:
+    if subtotal < 0 or distancia_km < 0:
         raise ValueError("Subtotal e distância não podem ser negativos")
 
     desconto = 10 if cliente_vip else 0
-    subtotal_com_desconto = subtotal - desconto
+    subtotal_com_desconto = subtotal - desconto/100
 
     if subtotal_com_desconto > 100:
         frete = 0
@@ -17,4 +17,8 @@ def calcular_total_pedido(subtotal, distancia_km, cliente_vip=False):
         frete = 8 + distancia_km
 
     total = subtotal + frete
+    total_decimal = str(round(total, 2))
     return total
+
+calcular_total_pedido(100, 20
+                      )
